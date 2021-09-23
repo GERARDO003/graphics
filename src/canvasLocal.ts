@@ -2,20 +2,32 @@
 export class CanvasLocal {
   //atributos
   protected graphics: CanvasRenderingContext2D;
+  rWidth: number =3;
+  rHeight: number = 3;
+  maxX: number;
+  maxY: number;
+  pixelSize: number;
+  centerX: number;
+  centerY: number;
+  rWidth2: number =2.5;
+  rHeight2: number = 2.5;
+
+ /* 
   protected rWidth:number;
   protected rHeight:number;
   protected maxX: number;
   protected maxY: number;
   protected pixelSize: number;
   protected centerX: number;
-  protected centerY: number;
+  protected centerY: number;*/
   
       
   public constructor(g: CanvasRenderingContext2D, canvas: HTMLCanvasElement){
+    
+    //this.rWidth = 6;
+    //this.rHeight= 4;
     this.graphics = g;
-    this.rWidth = 6;
-    this.rHeight= 4;
-    this.maxX = canvas.width - 1
+    this.maxX = canvas.width - 1 ;
     this.maxY = canvas.height - 1;
     this.pixelSize = Math.max(this.rWidth / this.maxX, this.rHeight / this.maxY);
     this.centerX = this.maxX/2;
@@ -24,6 +36,7 @@ export class CanvasLocal {
 
   iX(x: number):number{return Math.round(this.centerX + x/this.pixelSize);}
   iY(y: number): number{ return Math.round(this.centerY - y / this.pixelSize); }
+
   drawLine(x1: number, y1: number, x2: number, y2:number) {
     this.graphics.beginPath();
     this.graphics.moveTo(x1, y1);
@@ -31,20 +44,22 @@ export class CanvasLocal {
     this.graphics.closePath();
     this.graphics.stroke();
   }
-
-  fx(x:number):number {
+  
+  /*fx(x:number):number {
     return Math.sin(x*2.5);
-  }
+  }*/
 
 
   paint() {
     
-    this.drawLine(this.iX(-3), this.iY(0), this.iX(3), this.iY(0));
-    this.drawLine(this.iX(0), this.iY(2), this.iX(0), this.iY(-2));
-
-
+    this.drawLine(this.iX(0), this.iY(0), this.iX(1), this.iY(0));
+    this.drawLine(this.iX(1), this.iY(0), this.iX(1), this.iY(1));
+    this.drawLine(this.iX(1), this.iY(1), this.iX(0), this.iY(1));
+    this.drawLine(this.iX(0), this.iY(1), this.iX(0), this.iY(0));
+  }
+  
     //dibuja la cuadricula
-    this.graphics.strokeStyle = 'lightgray';
+    /*this.graphics.strokeStyle = 'lightgray';
     for (let x = -3; x <= 3; x+=0.25){
       this.drawLine(this.iX(x), this.iY(-2), this.iX(x), this.iY(2));
     }
@@ -132,7 +147,7 @@ export class CanvasLocal {
         xA = xA1; xB = xB1; xC = xC1;
         yA = yA1; yB = yB1; yC = yC1;
     } */
-    
-  }
+  //}
+  
 
 }
